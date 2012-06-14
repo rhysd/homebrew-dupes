@@ -46,13 +46,19 @@ end
 
 class Gcc < Formula
   homepage 'http://gcc.gnu.org'
-  url 'http://ftpmirror.gnu.org/gcc/gcc-4.7.0/gcc-4.7.0.tar.bz2'
-  mirror 'http://ftp.gnu.org/gnu/gcc/gcc-4.7.0/gcc-4.7.0.tar.bz2'
-  md5 '2a0f1d99fda235c29d40b561f81d9a77'
+  url 'http://ftpmirror.gnu.org/gcc/gcc-4.7.1/gcc-4.7.1.tar.bz2'
+  mirror 'http://ftp.gnu.org/gnu/gcc/gcc-4.7.1/gcc-4.7.1.tar.bz2'
+  md5 '933e6f15f51c031060af64a9e14149ff'
 
   depends_on 'gmp'
   depends_on 'libmpc'
   depends_on 'mpfr'
+
+  fails_with :clang do
+    cause <<-EOS.undent
+      Clang fails to build libgcc because libgcc's suffix cannnot be computed.
+      EOS
+  end
 
   def options
     [
